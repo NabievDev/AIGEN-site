@@ -130,26 +130,35 @@ export function ForWhom() {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="relative mx-auto max-w-3xl"
         >
-          <div className="absolute -inset-1 rounded-[28px] bg-gradient-to-r from-[#F59E0B]/30 via-[#7C3AED]/20 to-[#06B6D4]/30 blur-xl opacity-70" />
+          <div className="absolute -inset-1 rounded-[28px] bg-gradient-to-r from-[#7C3AED]/45 via-[#A855F7]/35 to-[#6366F1]/40 blur-2xl opacity-80" />
 
-          <div className="relative flex flex-col sm:flex-row items-center gap-5 px-6 sm:px-8 py-6 rounded-3xl bg-[#0A0A0F] border border-white/10 shadow-2xl shadow-[#0A0A0F]/20 overflow-hidden">
-            {/* Inner gradient sheen */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
-            <div className="pointer-events-none absolute -left-10 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-[#F59E0B]/15 blur-3xl" />
+          <div className="relative flex flex-col sm:flex-row items-center gap-5 px-6 sm:px-8 py-6 rounded-3xl bg-gradient-to-br from-[#2E1065] via-[#4C1D95] to-[#5B21B6] border border-[#A855F7]/30 shadow-2xl shadow-[#7C3AED]/25 overflow-hidden">
+            {/* Inner sheen + colored ambient blobs */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/[0.08] via-transparent to-white/[0.04]" />
+            <div className="pointer-events-none absolute -left-12 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-[#A855F7]/30 blur-3xl" />
+            <div className="pointer-events-none absolute -right-12 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-[#6366F1]/25 blur-3xl" />
+            {/* Subtle dotted texture for premium feel */}
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.07] mix-blend-screen"
+              style={{
+                backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+                backgroundSize: "16px 16px",
+              }}
+            />
 
-            <div className="relative shrink-0 flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F59E0B] to-[#D97706] shadow-lg shadow-[#F59E0B]/30">
+            <div className="relative shrink-0 flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F59E0B] to-[#D97706] shadow-lg shadow-[#F59E0B]/40 ring-1 ring-white/20">
               <span className="text-2xl leading-none" aria-hidden="true">⚡</span>
             </div>
 
             <div className="relative flex-1 text-center sm:text-left">
               <p className="font-mono text-[11px] tracking-wider text-[#F59E0B] uppercase mb-1">No-code? No problem.</p>
               <p className="text-white text-base md:text-lg font-medium leading-snug">
-                Опыт программирования <span className="text-white/60">не нужен.</span> Нужен только компьютер
-                <span className="text-white/60"> и</span> интерес.
+                Опыт программирования <span className="text-white/65">не нужен.</span> Нужен только компьютер
+                <span className="text-white/65"> и</span> интерес.
               </p>
             </div>
 
-            <div className="hidden sm:flex relative shrink-0 items-center gap-2 text-white/50 font-mono text-xs">
+            <div className="hidden sm:flex relative shrink-0 items-center gap-2 text-white/60 font-mono text-xs">
               <Heart size={14} className="text-[#F59E0B]" />
               <GraduationCap size={14} />
             </div>
