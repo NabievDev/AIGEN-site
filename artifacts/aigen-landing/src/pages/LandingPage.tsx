@@ -5,6 +5,7 @@ import { ForWhom } from "@/components/sections/ForWhom";
 import { Outcomes } from "@/components/sections/Outcomes";
 import { Program } from "@/components/sections/Program";
 import { Teachers } from "@/components/sections/Teachers";
+import { Certificate } from "@/components/sections/Certificate";
 import { Pricing } from "@/components/sections/Pricing";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -21,6 +22,7 @@ export default function LandingPage() {
         <Outcomes />
         <Program />
         <Teachers />
+        <Certificate />
         <Pricing />
         <FAQ />
         <FinalCTA />

@@ -5,7 +5,7 @@ import { Terminal } from "@/components/ui/Terminal";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
-  const headingText = "Твой ребёнок создаст настоящий сайт с ИИ".split(" ");
+  const headingText = "Ваш ребёнок создаст настоящий сайт с ИИ".split(" ");
 
   return (
     <section id="hero" className="relative min-h-[100dvh] flex items-center bg-[#0A0A0F] overflow-hidden pt-20 pb-16">
@@ -53,7 +53,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.8 }}
               className="text-lg md:text-xl text-white/70 max-w-2xl mb-10 leading-relaxed font-sans"
             >
-              За 3 месяца школьник пройдёт путь от «что такое ИИ» до собственного проекта в интернете на своём домене — используя инструменты, которыми пользуются взрослые разработчики.
+              За 3 месяца школьник пройдёт путь от «что такое ИИ» до собственного проекта в интернете на своём сервере и домене — используя инструменты, которыми пользуются взрослые разработчики.
             </motion.p>
 
             <motion.div

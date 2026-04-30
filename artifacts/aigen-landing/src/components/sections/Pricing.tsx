@@ -46,11 +46,11 @@ export function Pricing() {
               <p className="font-mono text-sm text-gray-500 mb-8 mt-1">Летний интенсив · 3 месяца</p>
 
               <div className="mb-2">
-                <span className="font-display font-extrabold text-4xl sm:text-5xl gradient-text">12 900 ₽</span>
+                <span className="font-display font-extrabold text-4xl sm:text-5xl gradient-text">7 900 ₽</span>
                 <span className="text-gray-500 font-medium"> / месяц</span>
               </div>
               <p className="text-sm text-gray-500 mb-8 pb-8 border-b border-gray-100">
-                или 34 900 ₽ за весь курс
+                или 21 900 ₽ за весь курс
               </p>
 
               <ul className="space-y-4 mb-10 flex-1">
