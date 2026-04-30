@@ -2,6 +2,7 @@ import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
 import { MarqueeStrip } from "@/components/sections/MarqueeStrip";
 import { ForWhom } from "@/components/sections/ForWhom";
+import { Skills } from "@/components/sections/Skills";
 import { Outcomes } from "@/components/sections/Outcomes";
 import { Program } from "@/components/sections/Program";
 import { Teachers } from "@/components/sections/Teachers";
@@ -19,6 +20,7 @@ export default function LandingPage() {
         <Hero />
         <MarqueeStrip />
         <ForWhom />
+        <Skills />
         <Outcomes />
         <Program />
         <Teachers />

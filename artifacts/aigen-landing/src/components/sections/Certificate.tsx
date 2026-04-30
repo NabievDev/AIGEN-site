@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Award, ShieldCheck, BadgeCheck, FileText } from "lucide-react";
-import certificateImg from "@/assets/certificate.png";
+import certificateImg from "@/assets/certificate-nobg.png";
 
 const benefits = [
   {
@@ -68,38 +68,55 @@ export function Certificate() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            <div className="relative">
-              {/* Glow halo */}
-              <div className="absolute -inset-6 bg-gradient-to-br from-[#7C3AED]/20 via-[#06B6D4]/15 to-[#F59E0B]/15 blur-3xl rounded-[40px]" />
-
+            <div className="relative pt-6 pb-10">
+              {/* Soft floor shadow that pulses subtly */}
               <motion.div
-                initial={{ rotate: -2 }}
-                whileHover={{ rotate: 0, scale: 1.02 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="relative rounded-2xl overflow-hidden shadow-[0_30px_80px_-20px_rgba(17,24,39,0.45)] border border-white/40"
+                aria-hidden="true"
+                animate={{ scaleX: [1, 0.85, 1], opacity: [0.55, 0.35, 0.55] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute left-1/2 -translate-x-1/2 bottom-0 w-3/4 h-10 rounded-[50%] bg-[#0A0A0F]/25 blur-2xl"
+              />
+
+              {/* Ambient glow halo behind the certificate */}
+              <motion.div
+                aria-hidden="true"
+                animate={{ opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="pointer-events-none absolute inset-x-0 top-0 mx-auto w-4/5 h-full bg-gradient-to-br from-[#7C3AED]/25 via-[#06B6D4]/15 to-[#F59E0B]/15 blur-[80px] rounded-[40px]"
+              />
+
+              {/* The floating certificate (image with no background) */}
+              <motion.div
+                animate={{ y: [0, -14, 0], rotate: [-1, 1, -1] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.03 }}
+                className="relative z-10 mx-auto max-w-[560px] drop-shadow-[0_40px_60px_rgba(17,24,39,0.35)]"
               >
                 <img
                   src={certificateImg}
                   alt="Образец сертификата от Федерации спортивного программирования Чувашии"
-                  className="w-full h-auto block"
+                  className="w-full h-auto block select-none pointer-events-none"
                   loading="lazy"
+                  draggable={false}
                 />
-                {/* Subtle gloss overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10" />
               </motion.div>
 
-              {/* Floating "Образец" badge */}
+              {/* Floating "Образец" badge — also gently floats with its own rhythm */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 z-10"
+                className="absolute top-2 right-4 sm:top-4 sm:right-8 z-20"
               >
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0A0A0F] text-white shadow-xl shadow-[#0A0A0F]/30 border border-white/10 font-mono text-xs tracking-wide">
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0A0A0F] text-white shadow-xl shadow-[#0A0A0F]/30 border border-white/10 font-mono text-xs tracking-wide"
+                >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#06B6D4] animate-pulse" />
                   ОБРАЗЕЦ
-                </div>
+                </motion.div>
               </motion.div>
 
               {/* Floating award badge */}
@@ -108,9 +125,13 @@ export function Certificate() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.55, type: "spring", stiffness: 150 }}
-                className="absolute -bottom-5 -left-3 sm:-bottom-6 sm:-left-6 z-10"
+                className="absolute bottom-4 left-2 sm:bottom-6 sm:left-4 z-20"
               >
-                <div className="flex items-center gap-3 pl-3 pr-5 py-3 rounded-2xl bg-white shadow-2xl border border-gray-100">
+                <motion.div
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  className="flex items-center gap-3 pl-3 pr-5 py-3 rounded-2xl bg-white shadow-2xl border border-gray-100"
+                >
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#F59E0B] to-[#D97706] flex items-center justify-center shadow-lg shadow-[#F59E0B]/30">
                     <Award size={20} className="text-white" strokeWidth={2.25} />
                   </div>
@@ -122,7 +143,7 @@ export function Certificate() {
                       Минспорт Чувашии
                     </p>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>
