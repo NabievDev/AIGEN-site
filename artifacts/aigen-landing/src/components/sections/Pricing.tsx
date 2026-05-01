@@ -101,40 +101,32 @@ export function Pricing() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="w-full lg:w-auto lg:min-w-[300px] lg:max-w-[320px]"
           >
-            <div className="relative rounded-3xl overflow-hidden">
-              {/* Outer glow */}
-              <div className="absolute -inset-1 rounded-[28px] bg-gradient-to-br from-[#7C3AED]/50 via-[#06B6D4]/30 to-[#F59E0B]/40 blur-xl opacity-70" />
+            <div className="relative bg-white rounded-3xl p-1 shadow-[0_0_40px_-15px_rgba(245,158,11,0.25)]">
+              {/* Gradient border illusion — amber/purple */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#F59E0B] via-[#7C3AED] to-[#06B6D4] rounded-3xl opacity-20" />
 
-              <div className="relative bg-[#0A0A0F] border border-white/10 rounded-3xl p-7 md:p-8 overflow-hidden">
-                {/* Background blobs */}
-                <div className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#7C3AED]/25 blur-3xl" />
-                <div className="pointer-events-none absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-[#F59E0B]/15 blur-3xl" />
-                <div className="pointer-events-none absolute inset-0 opacity-[0.06]"
-                  style={{
-                    backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px)",
-                    backgroundSize: "16px 16px",
-                  }}
-                />
+              <div className="relative bg-white rounded-[22px] p-7 md:p-8 overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#F59E0B] via-[#7C3AED] to-[#06B6D4]" />
+                <div className="pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full bg-[#F59E0B]/[0.06] blur-3xl" />
 
                 {/* Badge */}
-                <div className="relative inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-[#F59E0B] to-[#D97706] mb-5 shadow-lg shadow-[#F59E0B]/30">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-[#F59E0B] to-[#D97706] mb-5 shadow-md shadow-[#F59E0B]/25">
                   <Percent size={12} className="text-white" />
                   <span className="font-mono text-[11px] font-bold tracking-wider text-white uppercase">
                     Выгода 10%
                   </span>
                 </div>
 
-                <h3 className="relative font-display font-bold text-xl text-white leading-snug mb-3">
+                <h3 className="font-display font-bold text-xl text-gray-900 leading-snug mb-3">
                   Разовая оплата — выгоднее
                 </h3>
-                <p className="relative text-white/60 text-sm leading-relaxed mb-7">
+                <p className="text-gray-500 text-sm leading-relaxed mb-7">
                   Оплатите весь курс сразу и сэкономьте 1 530 ₽ — скидка 10% уже учтена. Никаких ежемесячных платежей.
                 </p>
 
                 {/* Price display */}
-                <div className="relative bg-white/[0.04] border border-white/10 rounded-2xl p-5 mb-7 backdrop-blur-sm">
-                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                  <p className="font-mono text-xs text-white/40 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 mb-7">
+                  <p className="font-mono text-xs text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                     <Zap size={11} className="text-[#F59E0B]" />
                     Единовременно за 3 месяца
                   </p>
@@ -144,8 +136,8 @@ export function Pricing() {
                     </span>
                   </div>
                   <div className="flex items-center gap-2 mt-1.5">
-                    <span className="text-white/40 text-sm line-through">15 300 ₽</span>
-                    <span className="font-mono text-[11px] text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-full">
+                    <span className="text-gray-400 text-sm line-through">15 300 ₽</span>
+                    <span className="font-mono text-[11px] text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-full border border-[#F59E0B]/20">
                       −1 530 ₽
                     </span>
                   </div>
@@ -155,14 +147,14 @@ export function Pricing() {
                   href="https://forms.yandex.ru/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative block w-full"
+                  className="block w-full"
                 >
-                  <button className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#7C3AED] to-[#6366F1] text-white font-medium text-base hover:opacity-90 active:opacity-80 transition shadow-lg shadow-[#7C3AED]/30">
+                  <button className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#7C3AED] to-[#6366F1] text-white font-medium text-base hover:opacity-90 active:opacity-80 transition shadow-lg shadow-[#7C3AED]/20">
                     Выбрать этот вариант →
                   </button>
                 </a>
 
-                <p className="relative text-center text-white/30 font-mono text-[11px] mt-4">
+                <p className="text-center text-gray-400 font-mono text-[11px] mt-4">
                   Одного платежа достаточно на весь курс
                 </p>
               </div>

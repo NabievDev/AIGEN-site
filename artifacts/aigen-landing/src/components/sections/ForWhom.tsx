@@ -62,7 +62,7 @@ export function ForWhom() {
                 </div>
               </div>
 
-              <ul className="relative space-y-4">
+              <ul className="relative space-y-3">
                 {kidPoints.map((text, i) => (
                   <motion.li
                     key={i}
@@ -70,10 +70,14 @@ export function ForWhom() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
-                    className="flex items-start gap-3.5"
+                    className="flex items-start gap-3"
                   >
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#7C3AED] shrink-0" />
-                    <span className="text-gray-700 leading-relaxed text-[15px] md:text-base">{text}</span>
+                    <div className="shrink-0 mt-0.5 w-6 h-6 rounded-lg bg-[#7C3AED]/10 flex items-center justify-center">
+                      <span className="font-mono text-[10px] font-bold text-[#7C3AED]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <span className="text-gray-700 leading-relaxed text-[15px] md:text-base pt-0.5">{text}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -103,7 +107,7 @@ export function ForWhom() {
                 </div>
               </div>
 
-              <ul className="relative space-y-4">
+              <ul className="relative space-y-3">
                 {parentPoints.map((text, i) => (
                   <motion.li
                     key={i}
@@ -111,10 +115,14 @@ export function ForWhom() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                    className="flex items-start gap-3.5"
+                    className="flex items-start gap-3"
                   >
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#06B6D4] shrink-0" />
-                    <span className="text-gray-700 leading-relaxed text-[15px] md:text-base">{text}</span>
+                    <div className="shrink-0 mt-0.5 w-6 h-6 rounded-lg bg-[#06B6D4]/10 flex items-center justify-center">
+                      <span className="font-mono text-[10px] font-bold text-[#06B6D4]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <span className="text-gray-700 leading-relaxed text-[15px] md:text-base pt-0.5">{text}</span>
                   </motion.li>
                 ))}
               </ul>

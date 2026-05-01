@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Send, Github, Users } from "lucide-react";
-import { SiVk } from "react-icons/si";
+import { Users } from "lucide-react";
 
 const teachers = [
   {
@@ -115,31 +114,7 @@ export function Teachers() {
                   </span>
                 </div>
 
-                <p className="text-gray-600 leading-relaxed text-sm mb-6 flex-1">{t.bio}</p>
-
-                <div className="flex items-center gap-4 text-gray-400 mt-auto pt-4 border-t border-gray-100 w-full justify-center">
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="hover:text-[#7C3AED] transition-colors"
-                  >
-                    <Send size={18} />
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="hover:text-[#0077FF] transition-colors"
-                  >
-                    <SiVk size={18} />
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="hover:text-black transition-colors"
-                  >
-                    <Github size={18} />
-                  </a>
-                </div>
+                <p className="text-gray-600 leading-relaxed text-sm flex-1">{t.bio}</p>
               </div>
             </motion.div>
           ))}
