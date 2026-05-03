@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 const links = [
   { label: "О курсе", href: "#about" },
   { label: "Программа", href: "#program" },
-  { label: "Преподаватели", href: "#teachers" },
   { label: "Цена", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ];
