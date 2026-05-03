@@ -74,7 +74,7 @@ export function Pricing() {
                 </ul>
 
                 <a
-                  href="https://forms.yandex.ru/"
+                  href="https://forms.yandex.ru/u/69f71ba1d0468853be7e29d2"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full"
@@ -144,7 +144,7 @@ export function Pricing() {
                 </div>
 
                 <a
-                  href="https://forms.yandex.ru/"
+                  href="https://forms.yandex.ru/u/69f71ba1d0468853be7e29d2"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full"

@@ -73,7 +73,7 @@ export function Header() {
             {/* CTA & Mobile Toggle */}
             <div className="flex items-center gap-4">
               <a 
-                href="https://forms.yandex.ru/" 
+                href="https://forms.yandex.ru/u/69f71ba1d0468853be7e29d2" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hidden md:inline-flex"
@@ -135,7 +135,7 @@ export function Header() {
               
               <div className="mt-auto pt-8">
                 <a 
-                  href="https://forms.yandex.ru/" 
+                  href="https://forms.yandex.ru/u/69f71ba1d0468853be7e29d2" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="block w-full"

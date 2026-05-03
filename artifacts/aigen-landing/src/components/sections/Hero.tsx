@@ -63,7 +63,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row flex-wrap items-center gap-4 mb-10 w-full sm:w-auto"
             >
               <a 
-                href="https://forms.yandex.ru/" 
+                href="https://forms.yandex.ru/u/69f71ba1d0468853be7e29d2" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"

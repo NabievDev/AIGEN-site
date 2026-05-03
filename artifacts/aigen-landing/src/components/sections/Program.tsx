@@ -159,7 +159,7 @@ export function Program() {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <a href="https://forms.yandex.ru/" target="_blank" rel="noopener noreferrer">
+          <a href="https://forms.yandex.ru/u/69f71ba1d0468853be7e29d2" target="_blank" rel="noopener noreferrer">
             <Button
               size="lg"
               className="glow-button bg-[#7C3AED] text-white hover:bg-[#7C3AED]/90 border-transparent rounded-full px-10 py-6 text-lg"
