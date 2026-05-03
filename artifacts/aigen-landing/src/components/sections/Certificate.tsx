@@ -3,9 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Award, ShieldCheck, BadgeCheck, FileText, X, ExternalLink } from "lucide-react";
 import certificateImg from "@/assets/certificate-nobg.png";
 
-// TODO: Replace with the actual URL of the accreditation PDF document
-const ACCREDITATION_PDF_URL =
-  "https://mozilla.github.io/pdf.js/web/viewer.html?file=https://www.w3.org/WAI/WCAG21/Techniques/pdf/sample.pdf";
+const ACCREDITATION_PDF_URL = "/accreditation.pdf";
 
 const benefits = [
   {
