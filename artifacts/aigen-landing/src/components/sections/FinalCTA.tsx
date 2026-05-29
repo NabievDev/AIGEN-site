@@ -1,16 +1,27 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Flame } from "lucide-react";
 
 export function FinalCTA() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const centralY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const topRightY = useTransform(scrollYProgress, [0, 1], [60, -120]);
+
   return (
     <section className="py-24 md:py-32 bg-gradient-to-b from-[#0A0A0F] to-[#1E0A3C] border-t border-white/10 relative overflow-hidden">
       <div className="absolute inset-0 dark-dot-grid opacity-20 pointer-events-none" />
-      {/* Ambient glows */}
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-[#7C3AED]/20 blur-[120px]" />
-      <div className="pointer-events-none absolute -top-20 right-0 w-[400px] h-[400px] rounded-full bg-[#06B6D4]/10 blur-3xl" />
+      <motion.div
+        style={{ y: centralY }}
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-[#7C3AED]/20 blur-[120px]"
+      />
+      <motion.div
+        style={{ y: topRightY }}
+        className="pointer-events-none absolute -top-20 right-0 w-[400px] h-[400px] rounded-full bg-[#06B6D4]/10 blur-3xl"
+      />
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-3xl">
+      <div ref={ref} className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

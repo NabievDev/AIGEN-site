@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   MessageSquareCode,
   Cpu,
@@ -51,20 +52,29 @@ const skills = [
 ];
 
 export function Skills() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const blobTopY = useTransform(scrollYProgress, [0, 1], [110, -110]);
+  const blobBotY = useTransform(scrollYProgress, [0, 1], [-90, 90]);
+
   return (
     <section id="skills" className="relative py-24 md:py-32 bg-white overflow-hidden">
-      {/* Soft background tint + dot grid */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage: "radial-gradient(circle, #111827 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
-      <div className="pointer-events-none absolute -top-32 right-0 w-[600px] h-[600px] rounded-full bg-[#7C3AED]/[0.06] blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-32 left-0 w-[500px] h-[500px] rounded-full bg-[#06B6D4]/[0.06] blur-3xl" />
+      <motion.div
+        style={{ y: blobTopY }}
+        className="pointer-events-none absolute -top-32 right-0 w-[600px] h-[600px] rounded-full bg-[#7C3AED]/[0.06] blur-3xl"
+      />
+      <motion.div
+        style={{ y: blobBotY }}
+        className="pointer-events-none absolute -bottom-32 left-0 w-[500px] h-[500px] rounded-full bg-[#06B6D4]/[0.06] blur-3xl"
+      />
 
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
-        {/* Header */}
+      <div ref={ref} className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -87,7 +97,7 @@ export function Skills() {
           </p>
         </motion.div>
 
-        {/* The "this site" meta hook — the wow moment */}
+        {/* The "this site" meta hook */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,15 +105,12 @@ export function Skills() {
           transition={{ duration: 0.7 }}
           className="relative mb-16 md:mb-20"
         >
-          {/* Outer glow */}
           <div className="absolute -inset-2 rounded-[32px] bg-gradient-to-br from-[#7C3AED]/40 via-[#06B6D4]/30 to-[#F59E0B]/30 blur-2xl opacity-60" />
 
           <div className="relative rounded-3xl overflow-hidden bg-[#0A0A0F] border border-white/10 shadow-2xl">
-            {/* Decorative gradient blobs inside the card */}
             <div className="pointer-events-none absolute -top-32 -left-20 w-[420px] h-[420px] rounded-full bg-[#7C3AED]/30 blur-[100px]" />
             <div className="pointer-events-none absolute -bottom-32 -right-20 w-[420px] h-[420px] rounded-full bg-[#06B6D4]/25 blur-[100px]" />
 
-            {/* Browser-window chrome */}
             <div className="relative flex items-center gap-2 px-4 sm:px-5 py-3 border-b border-white/10 bg-white/[0.02]">
               <div className="flex gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
@@ -121,7 +128,6 @@ export function Skills() {
               </div>
             </div>
 
-            {/* Body */}
             <div className="relative grid lg:grid-cols-[1.3fr_1fr] gap-8 lg:gap-10 p-6 sm:p-10 md:p-14">
               <div>
                 <div className="inline-flex items-center gap-2 mb-5">
@@ -165,7 +171,6 @@ export function Skills() {
                 </div>
               </div>
 
-              {/* Right "stats" panel */}
               <div className="relative grid grid-cols-2 gap-3 sm:gap-4 self-stretch">
                 {[
                   { label: "Строк, написанных вручную", value: "0" },
@@ -191,7 +196,6 @@ export function Skills() {
                   </motion.div>
                 ))}
 
-                {/* Floating "made with AI" pill */}
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -203,7 +207,6 @@ export function Skills() {
               </div>
             </div>
 
-            {/* Footer line */}
             <div className="relative px-6 sm:px-10 md:px-14 pb-6 sm:pb-8">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-5 border-t border-white/10">
                 <p className="font-mono text-[11px] tracking-wide text-white/40">

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CalendarDays } from "lucide-react";
 
@@ -53,11 +53,18 @@ export function Program() {
   const [activeTab, setActiveTab] = useState(programData[0].id);
   const activeContent = programData.find((d) => d.id === activeTab)!;
 
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], [70, -70]);
+
   return (
     <section id="program" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-b from-[#7C3AED]/5 to-transparent blur-3xl" />
+      <motion.div
+        style={{ y: bgY }}
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-b from-[#7C3AED]/5 to-transparent blur-3xl"
+      />
 
-      <div className="container mx-auto px-4 md:px-6 max-w-4xl relative z-10">
+      <div ref={ref} className="container mx-auto px-4 md:px-6 max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -79,7 +86,6 @@ export function Program() {
             Каждый месяц — свой уровень и своя задача. К концу августа — готовый проект в интернете.
           </p>
 
-          {/* Month tabs */}
           <div className="inline-flex p-1.5 bg-gray-100 rounded-full border border-gray-200">
             {programData.map((tab) => (
               <button
@@ -102,7 +108,6 @@ export function Program() {
           </div>
         </motion.div>
 
-        {/* Tab Content */}
         <div className="relative rounded-3xl overflow-hidden border border-gray-200 shadow-[0_8px_40px_-15px_rgba(124,58,237,0.15)]">
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7C3AED] via-[#06B6D4] to-[#F59E0B]" />
           <div className="bg-white p-8 md:p-10 min-h-[380px]">

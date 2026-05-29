@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Globe, Bot, Film, Github, PackageCheck } from "lucide-react";
 
 const outcomes = [
@@ -33,6 +34,11 @@ const outcomes = [
 ];
 
 export function Outcomes() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const blobTopY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const blobBotY = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+
   return (
     <section className="py-24 md:py-32 bg-[#F7F7F9] relative overflow-hidden">
       <div
@@ -42,10 +48,16 @@ export function Outcomes() {
           backgroundSize: "28px 28px",
         }}
       />
-      <div className="pointer-events-none absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-[#7C3AED]/[0.07] blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-40 left-0 w-[500px] h-[500px] rounded-full bg-[#06B6D4]/[0.07] blur-3xl" />
+      <motion.div
+        style={{ y: blobTopY }}
+        className="pointer-events-none absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-[#7C3AED]/[0.07] blur-3xl"
+      />
+      <motion.div
+        style={{ y: blobBotY }}
+        className="pointer-events-none absolute -bottom-40 left-0 w-[500px] h-[500px] rounded-full bg-[#06B6D4]/[0.07] blur-3xl"
+      />
 
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+      <div ref={ref} className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

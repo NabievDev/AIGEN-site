@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Sparkles, ShieldCheck, Zap, GraduationCap, Heart } from "lucide-react";
 
 const kidPoints = [
@@ -14,12 +15,18 @@ const parentPoints = [
 ];
 
 export function ForWhom() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const blobY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+
   return (
     <section id="about" className="relative py-24 md:py-32 bg-white overflow-hidden">
-      {/* Soft ambient background tint */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-gradient-to-br from-[#7C3AED]/[0.06] via-transparent to-[#06B6D4]/[0.06] blur-3xl" />
+      <motion.div
+        style={{ y: blobY }}
+        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-gradient-to-br from-[#7C3AED]/[0.06] via-transparent to-[#06B6D4]/[0.06] blur-3xl"
+      />
 
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+      <div ref={ref} className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,11 +52,9 @@ export function ForWhom() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="group relative"
           >
-            {/* Gradient outer glow on hover */}
             <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-[#7C3AED] via-[#9F67FF] to-[#06B6D4] opacity-0 group-hover:opacity-100 blur-md transition duration-500" />
 
             <div className="relative bg-white border border-gray-200/80 rounded-3xl p-8 md:p-10 shadow-[0_4px_30px_-12px_rgba(17,24,39,0.08)] group-hover:shadow-[0_20px_60px_-20px_rgba(124,58,237,0.35)] group-hover:-translate-y-1.5 group-hover:border-transparent transition-all duration-500 h-full overflow-hidden">
-              {/* Decorative corner gradient */}
               <div className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full bg-[#7C3AED]/[0.07] blur-3xl group-hover:bg-[#7C3AED]/[0.14] transition" />
 
               <div className="relative flex items-center gap-4 mb-7">
@@ -130,7 +135,7 @@ export function ForWhom() {
           </motion.div>
         </div>
 
-        {/* Disclaimer — premium dark-on-light pill */}
+        {/* Disclaimer */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -141,11 +146,9 @@ export function ForWhom() {
           <div className="absolute -inset-1 rounded-[28px] bg-gradient-to-r from-[#7C3AED]/45 via-[#A855F7]/35 to-[#6366F1]/40 blur-2xl opacity-80" />
 
           <div className="relative flex flex-col sm:flex-row items-center gap-5 px-6 sm:px-8 py-6 rounded-3xl bg-gradient-to-br from-[#2E1065] via-[#4C1D95] to-[#5B21B6] border border-[#A855F7]/30 shadow-2xl shadow-[#7C3AED]/25 overflow-hidden">
-            {/* Inner sheen + colored ambient blobs */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/[0.08] via-transparent to-white/[0.04]" />
             <div className="pointer-events-none absolute -left-12 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-[#A855F7]/30 blur-3xl" />
             <div className="pointer-events-none absolute -right-12 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-[#6366F1]/25 blur-3xl" />
-            {/* Subtle dotted texture for premium feel */}
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.07] mix-blend-screen"
               style={{

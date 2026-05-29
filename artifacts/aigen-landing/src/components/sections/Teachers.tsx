@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Users } from "lucide-react";
 
 const teachers = [
@@ -29,6 +30,11 @@ const teachers = [
 ];
 
 export function Teachers() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const blobTopY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const blobBotY = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+
   return (
     <section id="teachers" className="py-24 md:py-32 bg-[#F7F7F9] relative overflow-hidden">
       <div
@@ -38,10 +44,16 @@ export function Teachers() {
           backgroundSize: "28px 28px",
         }}
       />
-      <div className="pointer-events-none absolute -top-40 -left-20 w-[500px] h-[500px] rounded-full bg-[#7C3AED]/[0.07] blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-40 -right-20 w-[500px] h-[500px] rounded-full bg-[#06B6D4]/[0.07] blur-3xl" />
+      <motion.div
+        style={{ y: blobTopY }}
+        className="pointer-events-none absolute -top-40 -left-20 w-[500px] h-[500px] rounded-full bg-[#7C3AED]/[0.07] blur-3xl"
+      />
+      <motion.div
+        style={{ y: blobBotY }}
+        className="pointer-events-none absolute -bottom-40 -right-20 w-[500px] h-[500px] rounded-full bg-[#06B6D4]/[0.07] blur-3xl"
+      />
 
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
+      <div ref={ref} className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,27 +85,21 @@ export function Teachers() {
               transition={{ duration: 0.5, delay: i * 0.12 }}
               className="group relative"
             >
-              {/* Hover glow */}
               <div
                 className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 blur-md transition duration-500"
                 style={{ background: `linear-gradient(135deg, ${t.glow}40, transparent 60%)` }}
               />
 
               <div className="relative h-full bg-white border border-gray-200/80 rounded-3xl p-7 md:p-8 shadow-[0_4px_20px_-10px_rgba(17,24,39,0.07)] group-hover:shadow-[0_20px_50px_-20px_rgba(17,24,39,0.18)] group-hover:-translate-y-1.5 group-hover:border-transparent transition-all duration-500 flex flex-col items-center text-center overflow-hidden">
-                {/* Top gradient line */}
                 <div
                   className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition duration-500"
-                  style={{
-                    background: `linear-gradient(90deg, transparent, ${t.glow}, transparent)`,
-                  }}
+                  style={{ background: `linear-gradient(90deg, transparent, ${t.glow}, transparent)` }}
                 />
-                {/* Corner glow */}
                 <div
                   className="pointer-events-none absolute -top-16 right-0 w-40 h-40 rounded-full opacity-[0.06] group-hover:opacity-[0.14] blur-2xl transition"
                   style={{ backgroundColor: t.glow }}
                 />
 
-                {/* Avatar */}
                 <div className="relative mb-6">
                   <div
                     className="absolute inset-0 rounded-full blur-lg opacity-0 group-hover:opacity-60 transition duration-500"
