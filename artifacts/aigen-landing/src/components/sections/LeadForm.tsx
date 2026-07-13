@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { submitLead } from "@/lib/submitLead";
 
 const subjects = ["Информатика", "Математика", "Английский язык", "Китайский язык"];
 const programs = ["Общеобразовательная программа", "Подготовка к ОГЭ", "Подготовка к ЕГЭ"];
@@ -13,14 +14,20 @@ export function LeadForm() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setError("");
+    try {
+      await submitLead(form);
       setSubmitted(true);
-    }, 800);
+    } catch {
+      setError("Не удалось отправить заявку. Попробуйте позже.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -143,6 +150,10 @@ export function LeadForm() {
                       className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition resize-none"
                     />
                   </div>
+
+                  {error && (
+                    <p className="text-red-500 text-sm">{error}</p>
+                  )}
 
                   <button
                     type="submit"

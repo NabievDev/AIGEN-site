@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { submitLead } from "@/lib/submitLead";
 
 const subjects = ["Информатика", "Математика", "Английский язык", "Китайский язык"];
 const programs = ["Общеобразовательная программа", "Подготовка к ОГЭ", "Подготовка к ЕГЭ"];
@@ -7,14 +8,20 @@ export function Hero() {
   const [form, setForm] = useState({ name: "", phone: "", subject: "", program: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setError("");
+    try {
+      await submitLead(form);
       setSubmitted(true);
-    }, 800);
+    } catch {
+      setError("Не удалось отправить заявку. Попробуйте позже.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -129,6 +136,10 @@ export function Hero() {
                     {programs.map((p) => <option key={p} value={p}>{p}</option>)}
                   </select>
                 </div>
+
+                {error && (
+                  <p className="text-red-500 text-sm">{error}</p>
+                )}
 
                 <button
                   type="submit"
