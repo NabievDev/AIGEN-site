@@ -1,105 +1,149 @@
-import { motion } from "framer-motion";
-import { ParticleCanvas } from "@/components/ui/ParticleCanvas";
-import { GradientBlobs } from "@/components/ui/GradientBlobs";
-import { Terminal } from "@/components/ui/Terminal";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
+const subjects = ["Информатика", "Математика", "Английский язык", "Китайский язык"];
+const programs = ["Общеобразовательная программа", "Подготовка к ОГЭ", "Подготовка к ЕГЭ"];
 
 export function Hero() {
-  const headingText = "Ваш ребёнок создаст настоящий сайт с ИИ".split(" ");
+  const [form, setForm] = useState({ name: "", phone: "", subject: "", program: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 800);
+  };
 
   return (
-    <section id="hero" className="relative min-h-[100dvh] flex items-center bg-[#0A0A0F] overflow-hidden pt-20 pb-16">
-      {/* Backgrounds */}
-      <ParticleCanvas />
-      <GradientBlobs />
-
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 lg:gap-8 items-center">
-          {/* Left Column - Content */}
-          <div className="flex flex-col items-start pt-8 lg:pt-0">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center rounded-full border border-[#7C3AED]/30 bg-[#7C3AED]/10 px-4 py-1.5 text-sm font-medium text-[#D8B4FE] mb-8 font-mono backdrop-blur-sm"
-            >
-              🚀 Старт — июнь 2025
-            </motion.div>
-
-            <h1 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-white mb-6 tracking-tight max-w-3xl">
-              {headingText.map((word, i) => {
-                const isGradient = word === "с" || word === "ИИ";
-                return (
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.3 + i * 0.08,
-                      ease: [0.2, 0.65, 0.3, 0.9],
-                    }}
-                    key={i}
-                    className={`inline-block mr-3 mb-2 ${isGradient ? "gradient-text" : ""}`}
-                  >
-                    {word}
-                  </motion.span>
-                );
-              })}
-            </h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="text-lg md:text-xl text-white/70 max-w-2xl mb-10 leading-relaxed font-sans"
-            >
-              За 3 месяца школьник пройдёт путь от «что такое ИИ» до собственного проекта в интернете на своём сервере и домене — используя инструменты, которыми пользуются взрослые разработчики.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="flex flex-col sm:flex-row flex-wrap items-center gap-4 mb-10 w-full sm:w-auto"
-            >
-              <a 
-                href="https://forms.yandex.ru/u/69f71ba1d0468853be7e29d2" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto"
-              >
-                <Button size="lg" className="w-full glow-button bg-[#7C3AED] text-white hover:bg-[#7C3AED]/90 border-transparent rounded-full px-8 py-6 text-lg h-auto">
-                  Записаться на курс →
-                </Button>
-              </a>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full border-white/20 text-white hover:bg-white/10 hover:text-white bg-transparent backdrop-blur-sm px-8 py-6 text-lg h-auto" onClick={() => {
-                document.querySelector("#program")?.scrollIntoView({ behavior: "smooth" });
-              }}>
-                Смотреть программу
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.2 }}
-              className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium text-white/50 font-mono"
-            >
-              <span className="flex items-center gap-2"><span className="text-[#06B6D4]">✓</span> Без опыта программирования</span>
-              <span className="flex items-center gap-2"><span className="text-[#06B6D4]">✓</span> Онлайн</span>
-              <span className="flex items-center gap-2"><span className="text-[#06B6D4]">✓</span> Результат — живой сайт</span>
-            </motion.div>
+    <section className="hero-bg section-pattern py-16 md:py-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center">
+        {/* Left: Text */}
+        <div>
+          <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+            <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+            Онлайн-школа подготовки к экзаменам
           </div>
 
-          {/* Right Column - Terminal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="w-full flex justify-center lg:justify-end mt-10 lg:mt-0"
-          >
-            <Terminal />
-          </motion.div>
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
+            Подготовим к ОГЭ и ЕГЭ{" "}
+            <span className="gradient-text">с результатом</span>
+          </h1>
+
+          <p className="text-slate-600 text-lg leading-relaxed mb-8">
+            Преподаватели с 4-летним опытом помогут освоить программу, подготовиться к ОГЭ или ЕГЭ по информатике, математике, английскому и китайскому языкам.
+          </p>
+
+          <ul className="space-y-3 mb-8">
+            {[
+              "Индивидуальный подход к каждому ученику",
+              "Занятия в удобное время из любой точки мира",
+              "Более 600 учеников прошли подготовку",
+              "4 года успешной работы",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3 text-slate-700">
+                <svg className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex items-center gap-4 text-slate-500 text-sm">
+            <div className="flex -space-x-2">
+              {["🎓", "📚", "✏️", "🏆"].map((em, i) => (
+                <div key={i} className="w-9 h-9 rounded-full bg-orange-100 border-2 border-white flex items-center justify-center text-base">
+                  {em}
+                </div>
+              ))}
+            </div>
+            <span>Присоединяйтесь к сотням успешных учеников</span>
+          </div>
+        </div>
+
+        {/* Right: Form */}
+        <div className="bg-white rounded-2xl shadow-xl border border-orange-100 p-6 md:p-8">
+          {submitted ? (
+            <div className="text-center py-8">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">Заявка принята!</h3>
+              <p className="text-slate-600">Мы свяжемся с вами в ближайшее время и расскажем о программе обучения.</p>
+            </div>
+          ) : (
+            <>
+              <h2 className="text-xl font-bold text-slate-900 mb-1">Оставить заявку</h2>
+              <p className="text-slate-500 text-sm mb-6">Мы свяжемся и ответим на все вопросы</p>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Ваше имя *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Иван Иванов"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Телефон *</label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="+7 (999) 000-00-00"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Предмет</label>
+                  <select
+                    value={form.subject}
+                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition bg-white"
+                  >
+                    <option value="">Выберите предмет</option>
+                    {subjects.map((s) => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Программа обучения</label>
+                  <select
+                    value={form.program}
+                    onChange={(e) => setForm({ ...form, program: e.target.value })}
+                    className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition bg-white"
+                  >
+                    <option value="">Выберите программу</option>
+                    {programs.map((p) => <option key={p} value={p}>{p}</option>)}
+                  </select>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="btn-primary w-full disabled:opacity-70"
+                >
+                  {loading ? "Отправляем..." : "Записаться на бесплатную консультацию →"}
+                </button>
+
+                <p className="text-center text-xs text-slate-400">
+                  Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+                </p>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </section>

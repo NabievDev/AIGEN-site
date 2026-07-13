@@ -1,31 +1,25 @@
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
-import { MarqueeStrip } from "@/components/sections/MarqueeStrip";
-import { ForWhom } from "@/components/sections/ForWhom";
-import { Skills } from "@/components/sections/Skills";
-import { Outcomes } from "@/components/sections/Outcomes";
-import { Program } from "@/components/sections/Program";
-import { Certificate } from "@/components/sections/Certificate";
-import { Pricing } from "@/components/sections/Pricing";
+import { Stats } from "@/components/sections/Stats";
+import { Subjects } from "@/components/sections/Subjects";
+import { Programs } from "@/components/sections/Programs";
+import { WhyUs } from "@/components/sections/WhyUs";
+import { LeadForm } from "@/components/sections/LeadForm";
 import { FAQ } from "@/components/sections/FAQ";
-import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white selection:bg-[#7C3AED]/30 selection:text-[#7C3AED]">
+    <div className="min-h-screen bg-white">
       <Header />
       <main>
         <Hero />
-        <MarqueeStrip />
-        <ForWhom />
-        <Skills />
-        <Outcomes />
-        <Program />
-        <Certificate />
-        <Pricing />
+        <Stats />
+        <Subjects />
+        <Programs />
+        <WhyUs />
+        <LeadForm />
         <FAQ />
-        <FinalCTA />
       </main>
       <Footer />
     </div>
